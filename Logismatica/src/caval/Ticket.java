@@ -5,6 +5,8 @@
  */
 package caval;
 
+import java.util.Arrays;
+
 /**
  *
  * @author GÓMEZ
@@ -142,6 +144,10 @@ public class Ticket extends javax.swing.JFrame
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton6ActionPerformed
     {//GEN-HEADEREND:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        Object p[] = null;
+        p[1] = 2;
+        Archivos.Archivos.guarda(p, "RegistroTK.dat");
+        System.out.println(Arrays.toString(p));
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
