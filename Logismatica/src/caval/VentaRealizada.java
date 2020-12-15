@@ -11,7 +11,8 @@ package caval;
  */
 public class VentaRealizada extends javax.swing.JFrame
 {
-
+    
+    public static Productos p[] = null;
     /**
      * Creates new form Menu
      */
@@ -27,19 +28,28 @@ public class VentaRealizada extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
+        jOptionPane1 = new javax.swing.JOptionPane();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         salir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaContenido = new javax.swing.JTable();
+        btnProduct = new javax.swing.JTextField();
+        btnCantidad = new javax.swing.JTextField();
+        btnSerie = new javax.swing.JTextField();
+        btnPrecio = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Plomería y Sanitarios Caval");
         setMinimumSize(new java.awt.Dimension(571, 488));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
         jLabel1.setText("VENTA REALIZADA");
@@ -47,10 +57,8 @@ public class VentaRealizada extends javax.swing.JFrame
         jButton1.setBackground(new java.awt.Color(0, 153, 255));
         jButton1.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         jButton1.setText("Envio a Domicilio");
-        jButton1.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
@@ -58,10 +66,8 @@ public class VentaRealizada extends javax.swing.JFrame
         jButton2.setBackground(new java.awt.Color(0, 153, 255));
         jButton2.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         jButton2.setText("Entregar en Ventanilla");
-        jButton2.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
@@ -69,43 +75,39 @@ public class VentaRealizada extends javax.swing.JFrame
         salir.setBackground(new java.awt.Color(255, 0, 0));
         salir.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         salir.setText("Salir");
-        salir.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Georgia", 2, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+        TablaContenido.setFont(new java.awt.Font("Georgia", 2, 12)); // NOI18N
+        TablaContenido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "No", "Producto(s)", "Cantidad", "No.Serie", "Precio"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaContenido);
+
+        btnProduct.setToolTipText("");
+
+        btnSerie.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSerieActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
-                .addComponent(salir)
-                .addGap(35, 35, 35))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -115,14 +117,36 @@ public class VentaRealizada extends javax.swing.JFrame
                         .addGap(18, 18, 18)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(18, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnPrecio)
+                    .addComponent(btnSerie)
+                    .addComponent(btnCantidad)
+                    .addComponent(btnProduct)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(salir)))
+                .addGap(35, 35, 35))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(btnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -135,8 +159,24 @@ public class VentaRealizada extends javax.swing.JFrame
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-      EnvioDomicilio obj=new EnvioDomicilio();
-      obj.setVisible(true);
+//      EnvioDomicilio obj=new EnvioDomicilio();
+//      obj.setVisible(true);
+        String nom = btnProduct.getText();
+        int existencias = Integer.parseInt(btnCantidad.getText());
+        int serie = Integer.parseInt(btnSerie.getText());
+        double precio = Double.parseDouble(btnPrecio.getText());
+        
+        Productos obj = new Productos(nom, existencias, serie, precio);
+        p = ManipulaProductos.inserta(p, obj);
+        /*JOptionPane.showMessageDialog(this, "DATO INSERTADO CORRECTAMENTE...");
+        // TODO add your handling code here:*/
+        //Mensaje.exito(this, "DATO INSERTADO CORRECTAMENTE");
+        //VtnCancelarActionPerformed(evt);
+        btnProduct.setText("");
+        btnCantidad.setText("");
+        btnSerie.setText("");
+        btnPrecio.setText("");
+        System.out.println("La hemos cagao");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
@@ -147,8 +187,25 @@ public class VentaRealizada extends javax.swing.JFrame
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_salirActionPerformed
     {//GEN-HEADEREND:event_salirActionPerformed
+        Archivos.Archivos.guarda(p, "datos.dat");
         this.dispose();
     }//GEN-LAST:event_salirActionPerformed
+
+    private void btnSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSerieActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSerieActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+    p = (Productos[]) Archivos.Archivos.carga("datos.dat");
+        System.out.println(p.length);
+        for (int i = 0; i < p.length; i++) {
+            TablaContenido.setValueAt(p[i].getFolio(), i, 0);
+            TablaContenido.setValueAt(p[i].getNom(), i, 1);
+            TablaContenido.setValueAt(p[i].getExistencias(), i, 2);
+            TablaContenido.setValueAt(p[i].getSerie(), i, 3);
+            TablaContenido.setValueAt(p[i].getPrecio(), i, 4);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -197,11 +254,16 @@ public class VentaRealizada extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaContenido;
+    private javax.swing.JTextField btnCantidad;
+    private javax.swing.JTextField btnPrecio;
+    private javax.swing.JTextField btnProduct;
+    private javax.swing.JTextField btnSerie;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JOptionPane jOptionPane1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 }

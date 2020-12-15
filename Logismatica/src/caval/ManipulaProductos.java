@@ -22,27 +22,27 @@ public class ManipulaProductos {
         return Lecturas.entero(true);
     }
 
-    public static Productos creaObjeto(int opc) {
-
-        String nom;
-        int existencias;
-        int lote;
-        String fechaCad;
-
-        System.out.println("dame el nombre : ");
-        nom = Lecturas.cadena();
-        System.out.println("dame las existencias: ");
-        existencias = Lecturas.entero(true);
-        if (opc == 1) {
-            System.out.println("dame la fecha de caducidad: ");
-            fechaCad = Lecturas.cadena();
-            return new Perecederos(fechaCad, nom, existencias);
-        } else {
-            System.out.println("dame el lote: ");
-            lote = Lecturas.entero(true);
-            return new NoPerecederos(lote, nom, existencias);
-        }
-    }
+//    public static Productos creaObjeto(int opc) {
+//
+//        String nom;
+//        int existencias;
+//        int lote;
+//        String fechaCad;
+//
+//        System.out.println("dame el nombre : ");
+//        nom = Lecturas.cadena();
+//        System.out.println("dame las existencias: ");
+//        existencias = Lecturas.entero(true);
+//        //if (opc == 1) {
+//            //System.out.println("dame la fecha de caducidad: ");
+//            //fechaCad = Lecturas.cadena();
+//            //return new Perecede(fechaCad, nom, existencias);
+//        /*} else {
+//            System.out.println("dame el lote: ");
+//            lote = Lecturas.entero(true);
+//            return new NoPerecederos(lote, nom, existencias);
+//        }*/
+//    }
 
     public static Productos[] inserta(Productos p[], Productos obj) {
         if (p == null) {
@@ -63,13 +63,13 @@ public class ManipulaProductos {
             s = "No hay datos que mostrar...";
         } else {
             for (int i = 0; i < p.length; i++) {
-                if (p[i] instanceof Perecederos && opc == 1) {
+                //if (p[i] instanceof Perecederos && opc == 1) {
                     s += p[i].desp();
-                } else {
+                /*} else {
                     if (p[i] instanceof NoPerecederos && opc == 2) {
                         s += p[i].desp();
                     }
-                }
+                }*/
             }
             if (s == "") {
                 s = "no se encontraron datos de este tipo";
@@ -78,27 +78,27 @@ public class ManipulaProductos {
         return s;
     }
 
-    public static String consultaIva(Productos[] p, int opc) {
-        String s = "";
-        if (p == null) {
-            s = "No hay datos que mostrar...";
-        } else {
-            for (int i = 0; i < p.length; i++) {
-                if (p[i] instanceof Perecederos && opc == 1) {
-                    s += p[i].desp();
-                } else {
-                    if (p[i] instanceof NoPerecederos && opc == 2) {
-                        s += p[i].desp();
-
-                    }
-                }
-            }
-            if (s == "") {
-                s = "no se encontraron datos de este tipo";
-            }
-        }
-        return s;
-    }
+//    public static String consultaIva(Productos[] p, int opc) {
+//        String s = "";
+//        if (p == null) {
+//            s = "No hay datos que mostrar...";
+//        } else {
+//            for (int i = 0; i < p.length; i++) {
+//                if (p[i] instanceof Perecederos && opc == 1) {
+//                    s += p[i].desp();
+//                } else {
+//                    if (p[i] instanceof NoPerecederos && opc == 2) {
+//                        s += p[i].desp();
+//
+//                    }
+//                }
+//            }
+//            if (s == "") {
+//                s = "no se encontraron datos de este tipo";
+//            }
+//        }
+//        return s;
+//    }
     
     
 
@@ -111,13 +111,14 @@ public class ManipulaProductos {
             String nom = Lecturas.cadena();
 
             for (int i = 0; i < p.length; i++) {
-                if (p[i] instanceof Perecederos && opc == 1 && nom.equals(p[i].getNom())) {
+                //lo quite p[i] instanceof Perecederos && opc == 1 && 
+                if (nom.equals(p[i].getNom())) {
                     return i;
-                } else {
+                }/* else {
                     if (p[i] instanceof NoPerecederos && opc == 2 && nom.equals(p[i].getNom())) {
                         return i;
                     }
-                }
+                }*/
             }
             if (s == "") {
                 s = "no se encontraron datos de este tipo";
