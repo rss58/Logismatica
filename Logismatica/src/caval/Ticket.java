@@ -7,6 +7,7 @@ package caval;
 
 import java.util.Arrays;
 
+import Archivos.Archivos;
 /**
  *
  * @author GÓMEZ
@@ -146,7 +147,7 @@ public class Ticket extends javax.swing.JFrame
         // TODO add your handling code here:
         Object p[] = null;
         p[1] = 2;
-        Archivos.Archivos.guarda(p, "RegistroTK.dat");
+        Archivos.guarda(p, "RegistroTK.dat");
         System.out.println(Arrays.toString(p));
     }//GEN-LAST:event_jButton6ActionPerformed
 
