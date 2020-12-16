@@ -5,8 +5,6 @@
  */
 package caval;
 
-import s3.Lecturas;
-
 
 /**
  *
@@ -14,13 +12,13 @@ import s3.Lecturas;
  */
 public class ManipulaProductos {
 
-    public static int menu(String[] mnu, String s) {
-        System.out.println("=== MENÚ " + s + " ===");
-        for (int i = 0; i < mnu.length; i++) {
-            System.out.println((i + 1) + ".-" + mnu[i]);
-        }
-        return Lecturas.entero(true);
-    }
+//    public static int menu(String[] mnu, String s) {
+//        System.out.println("=== MENÚ " + s + " ===");
+//        for (int i = 0; i < mnu.length; i++) {
+//            System.out.println((i + 1) + ".-" + mnu[i]);
+//        }
+//        //return Lecturas.entero(true);
+//    }
 
 //    public static Productos creaObjeto(int opc) {
 //
@@ -102,13 +100,13 @@ public class ManipulaProductos {
     
     
 
-    public static int busca(Productos p[], int opc, String s) //se llama para el otro punto
+    public static int busca(Productos p[], int opc, String s, String pBusca) //se llama para el otro punto
     {
         if (p == null) {
             s = "No hay datos que..." + s + "...";
         } else {
             System.out.println("DAME EL PRODUCTO A ELIMINAR/MODIFICAR");
-            String nom = Lecturas.cadena();
+            String nom = pBusca;
 
             for (int i = 0; i < p.length; i++) {
                 //lo quite p[i] instanceof Perecederos && opc == 1 && 

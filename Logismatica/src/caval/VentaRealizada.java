@@ -9,15 +9,14 @@ package caval;
  *
  * @author GÓMEZ
  */
-public class VentaRealizada extends javax.swing.JFrame
-{
-    
+public class VentaRealizada extends javax.swing.JFrame {
+
     public static Productos p[] = null;
+
     /**
      * Creates new form Menu
      */
-    public VentaRealizada()
-    {
+    public VentaRealizada() {
         initComponents();
     }
 
@@ -37,10 +36,7 @@ public class VentaRealizada extends javax.swing.JFrame
         salir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         TablaContenido = new javax.swing.JTable();
-        btnProduct = new javax.swing.JTextField();
-        btnCantidad = new javax.swing.JTextField();
-        btnSerie = new javax.swing.JTextField();
-        btnPrecio = new javax.swing.JTextField();
+        Rellenar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Plomería y Sanitarios Caval");
@@ -96,11 +92,10 @@ public class VentaRealizada extends javax.swing.JFrame
         ));
         jScrollPane1.setViewportView(TablaContenido);
 
-        btnProduct.setToolTipText("");
-
-        btnSerie.addActionListener(new java.awt.event.ActionListener() {
+        Rellenar.setText("R");
+        Rellenar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSerieActionPerformed(evt);
+                RellenarActionPerformed(evt);
             }
         });
 
@@ -109,48 +104,35 @@ public class VentaRealizada extends javax.swing.JFrame
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(149, 149, 149)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnPrecio)
-                    .addComponent(btnSerie)
-                    .addComponent(btnCantidad)
-                    .addComponent(btnProduct)
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton2)
-                        .addGap(18, 18, 18)
+                        .addGap(29, 29, 29)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(salir)))
-                .addGap(35, 35, 35))
+                        .addGap(27, 27, 27)
+                        .addComponent(salir)
+                        .addGap(18, 18, 18)
+                        .addComponent(Rellenar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 535, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 14, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(btnProduct, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnSerie, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnPrecio, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
-                .addGap(41, 41, 41)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(salir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Rellenar))
                 .addContainerGap())
         );
 
@@ -159,44 +141,24 @@ public class VentaRealizada extends javax.swing.JFrame
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton1ActionPerformed
     {//GEN-HEADEREND:event_jButton1ActionPerformed
-//      EnvioDomicilio obj=new EnvioDomicilio();
-//      obj.setVisible(true);
-        String nom = btnProduct.getText();
-        int existencias = Integer.parseInt(btnCantidad.getText());
-        int serie = Integer.parseInt(btnSerie.getText());
-        double precio = Double.parseDouble(btnPrecio.getText());
-        
-        Productos obj = new Productos(nom, existencias, serie, precio);
-        p = ManipulaProductos.inserta(p, obj);
-        /*JOptionPane.showMessageDialog(this, "DATO INSERTADO CORRECTAMENTE...");
-        // TODO add your handling code here:*/
-        //Mensaje.exito(this, "DATO INSERTADO CORRECTAMENTE");
-        //VtnCancelarActionPerformed(evt);
-        btnProduct.setText("");
-        btnCantidad.setText("");
-        btnSerie.setText("");
-        btnPrecio.setText("");
-        System.out.println("La hemos cagao");
+        EnvioDomicilio obj = new EnvioDomicilio();
+        obj.setVisible(true);
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_jButton2ActionPerformed
     {//GEN-HEADEREND:event_jButton2ActionPerformed
-       Nota obj=new Nota();
-       obj.setVisible(true);
+        Nota obj = new Nota();
+        obj.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void salirActionPerformed(java.awt.event.ActionEvent evt)//GEN-FIRST:event_salirActionPerformed
     {//GEN-HEADEREND:event_salirActionPerformed
-        Archivos.Archivos.guarda(p, "datos.dat");
         this.dispose();
     }//GEN-LAST:event_salirActionPerformed
 
-    private void btnSerieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSerieActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnSerieActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-    p = (Productos[]) Archivos.Archivos.carga("datos.dat");
+        p = (Productos[]) Archivos.Archivos.carga("datos.dat");
         System.out.println(p.length);
         for (int i = 0; i < p.length; i++) {
             TablaContenido.setValueAt(p[i].getFolio(), i, 0);
@@ -207,58 +169,49 @@ public class VentaRealizada extends javax.swing.JFrame
         }
     }//GEN-LAST:event_formWindowOpened
 
+    private void RellenarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RellenarActionPerformed
+        new LlenarDatos().setVisible(true);
+    }//GEN-LAST:event_RellenarActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[])
-    {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try
-        {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
-            {
-                if ("Nimbus".equals(info.getName()))
-                {
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex)
-        {
+        } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(VentaRealizada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex)
-        {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(VentaRealizada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex)
-        {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VentaRealizada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex)
-        {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentaRealizada.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable()
-        {
-            public void run()
-            {
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
                 new VentaRealizada().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Rellenar;
     private javax.swing.JTable TablaContenido;
-    private javax.swing.JTextField btnCantidad;
-    private javax.swing.JTextField btnPrecio;
-    private javax.swing.JTextField btnProduct;
-    private javax.swing.JTextField btnSerie;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
