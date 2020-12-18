@@ -5,6 +5,8 @@
  */
 package caval;
 
+import static caval.VentaRealizada.p;
+
 /**
  *
  * @author GÓMEZ
@@ -27,18 +29,22 @@ public class Nota extends javax.swing.JFrame
      */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
-    private void initComponents()
-    {
+    private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        TablaContenido = new javax.swing.JTable();
         salir = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Plomería y Sanitarios Caval");
         setMinimumSize(new java.awt.Dimension(571, 297));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Georgia", 1, 24)); // NOI18N
@@ -46,22 +52,20 @@ public class Nota extends javax.swing.JFrame
         getContentPane().add(jLabel1);
         jLabel1.setBounds(180, 0, 210, 39);
 
-        jTable1.setFont(new java.awt.Font("Georgia", 2, 12)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][]
-            {
+        TablaContenido.setFont(new java.awt.Font("Georgia", 2, 12)); // NOI18N
+        TablaContenido.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null},
                 {null, null, null, null, null}
             },
-            new String []
-            {
+            new String [] {
                 "No", "Producto(s)", "Cantidad", "No.Serie", "Precio"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(TablaContenido);
 
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(60, 40, 452, 130);
@@ -69,10 +73,8 @@ public class Nota extends javax.swing.JFrame
         salir.setBackground(new java.awt.Color(255, 0, 0));
         salir.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         salir.setText("Salir");
-        salir.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        salir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 salirActionPerformed(evt);
             }
         });
@@ -82,10 +84,8 @@ public class Nota extends javax.swing.JFrame
         jButton5.setBackground(new java.awt.Color(0, 153, 255));
         jButton5.setFont(new java.awt.Font("Sitka Small", 3, 14)); // NOI18N
         jButton5.setText("Imprimir Nota");
-        jButton5.addActionListener(new java.awt.event.ActionListener()
-        {
-            public void actionPerformed(java.awt.event.ActionEvent evt)
-            {
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
@@ -104,6 +104,19 @@ public class Nota extends javax.swing.JFrame
     {//GEN-HEADEREND:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // TODO add your handling code here:
+        p = (Productos[]) Archivos.Archivos.carga("datos.dat");
+        System.out.println(p.length);
+        for (int i = 0; i < p.length; i++) {
+            TablaContenido.setValueAt(p[i].getFolio(), i, 0);
+            TablaContenido.setValueAt(p[i].getNom(), i, 1);
+            TablaContenido.setValueAt(p[i].getExistencias(), i, 2);
+            TablaContenido.setValueAt(p[i].getSerie(), i, 3);
+            TablaContenido.setValueAt(p[i].getPrecio(), i, 4);
+        }
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -151,10 +164,10 @@ public class Nota extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTable TablaContenido;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JButton salir;
     // End of variables declaration//GEN-END:variables
 
