@@ -1,0 +1,4 @@
+Host: 199.100.1.101
+Usuario: missveci_santa_rosa
+Contrasenha:ehaS2LD64YdJ
+NombreBD: missveci_sta_rosa
